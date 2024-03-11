@@ -6,6 +6,7 @@ const p2Rock = document.querySelector("#p2rock");
 const p2Paper = document.querySelector("#p2paper");
 const p2Scissors = document.querySelector("#p2scissors");
 const nextRoundButton = document.querySelector("#nextRound");
+const resetGameButton = document.querySelector("#resetGame");
 
 const p1Choices = document.querySelector("#p1");
 const p2Choices = document.querySelector("#p2");
@@ -242,21 +243,46 @@ p2Scissors.addEventListener("click", function() {
 
 
 // Next Round Setup
-nextRoundButton.addEventListener("click", function() {
+nextRoundButton.addEventListener("click", resetSelections);
+
+// New Game
+resetGameButton.addEventListener("click", resetGame);
+
+/*
+    Reset Selections
+        - set player selection boolean to false (p1Played / p2Played)
+        - reset round result text
+        - remove player choice from class list
+        - remove selected class (remove highlighted selection)
+*/
+function resetSelections() {
     p1Played = false;
     p2Played = false;
+    
     result.innerText = "";
+    
     p1Choices.classList.remove("rock", "paper", "scissors");
     p2Choices.classList.remove("rock", "paper", "scissors");
-
+    
     p1Rock.classList.remove("selected");
     p2Rock.classList.remove("selected");
-
     p1Paper.classList.remove("selected");
     p2Paper.classList.remove("selected");
-
     p1Scissors.classList.remove("selected");
     p2Scissors.classList.remove("selected");
-})
+}
+
+/*
+    Reset Game
+        - reset player selections
+        - reset score and score display back to 0
+*/
+function resetGame() {
+    resetSelections();
+    p1Score = 0;
+    p2Score = 0;
+    p1Span.innerText = 0;
+    p2Span.innerText = 0;
+}
 
 

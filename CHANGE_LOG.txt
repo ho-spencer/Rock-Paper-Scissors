@@ -1,5 +1,12 @@
 ==========================================
 3/11/24
+Add Reset Game Button
+==========================================
+- added button to reset entire game
+
+
+==========================================
+3/11/24
 Update Score and Winner Display Message
 ==========================================
 - update scoreboard based on winner
