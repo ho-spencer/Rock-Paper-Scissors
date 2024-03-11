@@ -1,0 +1,22 @@
+==========================================
+3/11/24
+Update Score and Winner Display Message
+==========================================
+- update scoreboard based on winner
+- update winner display message to show who won the round and why
+- added logic so each player can only make 1 selection per round
+- add button to reset game for the next round
+    - remove winner display message
+    - remove each player's selections
+
+==================================
+3/11/24
+Rock Paper Scissors - no score
+==================================
+- Created Rock Paper Scissors Game
+- P1 and P2 can play rock, paper, or scissors by clicking on one of the icons
+- logic to determine winner created
+
+Notes:
+- p1 / p2 can change their play even after an option is selected
+    - need to update so user is locked after making a choice (until the next round)
