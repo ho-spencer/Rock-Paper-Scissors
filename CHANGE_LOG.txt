@@ -1,3 +1,19 @@
+==================================
+3/11/24
+Add Best of # of Rounds Option
+==================================
+- add select element to choose a "best of # of rounds" option
+    - value attribute of each option represents number of rounds needed to win
+        - used to determine winner
+            - best of 3 = need to win 2 rounds
+            - best of 5 = need to win 3 rounds
+            - best of 7 = need to win 4 rounds
+- update game logic to allow players to play until there is a winner
+    - if number of rounds need to win is reached
+        - next round can't be started - can't press "next round" button
+        - display winner
+
+
 ==========================================
 3/11/24
 Add Reset Game Button
@@ -15,6 +31,7 @@ Update Score and Winner Display Message
 - add button to reset game for the next round
     - remove winner display message
     - remove each player's selections
+
 
 ==================================
 3/11/24

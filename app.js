@@ -7,9 +7,17 @@ const p2Paper = document.querySelector("#p2paper");
 const p2Scissors = document.querySelector("#p2scissors");
 const nextRoundButton = document.querySelector("#nextRound");
 const resetGameButton = document.querySelector("#resetGame");
+const selectScore = document.querySelector("#playTo");
+const winnerDisplay = document.querySelector("#winnerDisplay");
 
 const p1Choices = document.querySelector("#p1");
 const p2Choices = document.querySelector("#p2");
+
+// variables for number of rounds
+let targetRounds = selectScore.value;           // set target rounds based on select value
+let targetRoundsInt = parseInt(targetRounds);   // convert targetRounds to an integer
+let winnerText; 
+let isGameOver = false;                         // variable to track if game is in progress / over
 
 // variables for spans (score display)
 const p1Span = document.querySelector("#p1Score");
@@ -25,6 +33,19 @@ let p1Played = false;
 let p2Played = false;
 
 /*
+    Select Score Event Listener
+        - when target score (number of rounds) is selected
+            - set new target score value
+            - reset score (if new target score is selected mid game, game resets)
+*/
+selectScore.addEventListener("change", function() {
+    targetRounds = selectScore.value;
+    targetRoundsInt = parseInt(targetRounds);
+    resetGame();
+})
+
+
+/*
     P1 and P2 Event Listener
         - add class ('rock', 'paper', or 'scissors') based on player's selection
             - used to determine winner
@@ -33,11 +54,12 @@ let p2Played = false;
             - used to update background color on image div to highlight each player's selection
             - remove 'selected' on other 2 so only choice can be highlighted at once
         - update score and round winner display
+        - if target number of rounds reached, display winner
 */
 // P1 ROCK
 p1Rock.addEventListener("click", function() {
 
-    if (!p1Played) {
+    if (!p1Played && targetRoundsInt > 0 && !isGameOver) {
         // update class to reflect p1's selection
         p1Choices.classList.add("rock");    
         p1Choices.classList.remove("paper", "scissors");
@@ -54,17 +76,19 @@ p1Rock.addEventListener("click", function() {
         if (p2Choices.classList.contains("paper")) {
             p2Score += 1;
             p2Span.innerText = p2Score;
-
             result.innerText = "PLAYER 2 WINS - PAPER COVERS ROCK."
         }
 
         if (p2Choices.classList.contains("scissors")) {
             p1Score += 1;
             p1Span.innerText = p1Score;
-
             result.innerText = "PLAYER 1 WINS - ROCK SMASHES SCISSORS."
         }
-        
+
+        if ( (p1Score == targetRoundsInt) || (p2Score == targetRoundsInt) ){
+            targetRoundsReached();
+        }
+
         p1Played = true;
     }
 })
@@ -72,7 +96,7 @@ p1Rock.addEventListener("click", function() {
 // P1 PAPER
 p1Paper.addEventListener("click", function() {
     
-    if (!p1Played) {
+    if (!p1Played && targetRoundsInt > 0 && !isGameOver) {
         // update class to reflect p1's selection
         p1Choices.classList.add("paper"); 
         p1Choices.classList.remove("rock", "scissors");
@@ -85,7 +109,6 @@ p1Paper.addEventListener("click", function() {
         if (p2Choices.classList.contains("rock")) {
             p1Score += 1;
             p1Span.innerText = p1Score;
-            
             result.innerText = "PLAYER 1 WINS - PAPER COVERS ROCK.";
         }
         
@@ -96,9 +119,13 @@ p1Paper.addEventListener("click", function() {
         if (p2Choices.classList.contains("scissors")) {
             p2Score += 1;
             p2Span.innerText = p2Score;
-            
             result.innerText = "PLAYER 2 WINS - SCISSORS CUTS PAPER";
         }
+
+        if ( (p1Score == targetRoundsInt) || (p2Score == targetRoundsInt) ){
+            targetRoundsReached();
+        }
+
 
         p1Played = true;
     }
@@ -107,7 +134,7 @@ p1Paper.addEventListener("click", function() {
 // P1 SCISSORS
 p1Scissors.addEventListener("click", function() {
     
-    if (!p1Played) {
+    if (!p1Played && targetRoundsInt > 0 && !isGameOver) {
         // update class to reflect p1's selection
         p1Choices.classList.add("scissors"); 
         p1Choices.classList.remove("rock", "paper");
@@ -120,22 +147,24 @@ p1Scissors.addEventListener("click", function() {
         if (p2Choices.classList.contains("rock")) {
             p2Score += 1;
             p2Span.innerText = p2Score;
-
             result.innerText = "PLAYER 2 WINS - ROCK SMASHES SCISSORS.";
         }
         
         if (p2Choices.classList.contains("paper")) {
             p1Score += 1;
             p1Span.innerText = p1Score;
-
-
             result.innerText = "PLAYER 1 WINS - SCISSORS CUTS PAPER";
         }
 
         if (p2Choices.classList.contains("scissors")) {
             result.innerText = "TIE"
         }
-     
+
+        if ( (p1Score == targetRoundsInt) || (p2Score == targetRoundsInt) ){
+            targetRoundsReached();
+        }
+
+
         p1Played = true;
     }
 })
@@ -143,7 +172,7 @@ p1Scissors.addEventListener("click", function() {
 // P2 ROCK
 p2Rock.addEventListener("click", function() {
     
-    if (!p2Played) {
+    if (!p2Played && targetRoundsInt > 0 && !isGameOver) {
         p2Choices.classList.add("rock");
         p2Choices.classList.remove("paper", "scissors");
         
@@ -158,16 +187,17 @@ p2Rock.addEventListener("click", function() {
         if (p1Choices.classList.contains("paper")) {
             p1Score += 1;
             p1Span.innerText = p1Score;
-
-
             result.innerText = "PLAYER 1 WINS - PAPER COVERS ROCK.";
         }
 
         if (p1Choices.classList.contains("scissors")) {
             p2Score += 1;
             p2Span.innerText = p2Score;
-
             result.innerText = "PLAYER 2 WINS - ROCK SMASHES SCISSORS.";
+        }
+
+        if ( (p1Score == targetRoundsInt) || (p2Score == targetRoundsInt) ){
+            targetRoundsReached();
         }
 
         p2Played = true;
@@ -177,7 +207,7 @@ p2Rock.addEventListener("click", function() {
 // P2 PAPER
 p2Paper.addEventListener("click", function() {
     
-    if (!p2Played) {
+    if (!p2Played && targetRoundsInt > 0 && !isGameOver) {
         p2Choices.classList.add("paper"); 
         p2Choices.classList.remove("rock", "scissors");
 
@@ -188,7 +218,6 @@ p2Paper.addEventListener("click", function() {
         if (p1Choices.classList.contains("rock")) {
             p2Score += 1;
             p2Span.innerText = p2Score;
-            
             result.innerText = "PLAYER 2 WINS - PAPER COVERS ROCK.";
         }
 
@@ -199,9 +228,14 @@ p2Paper.addEventListener("click", function() {
         if (p1Choices.classList.contains("scissors")) {
             p1Score += 1;
             p1Span.innerText = p1Score;
-            
             result.innerText = "PLAYER 1 WINS - SCISSORS CUTS PAPER";
         }
+
+        if ( (p1Score == targetRoundsInt) || (p2Score == targetRoundsInt) ){
+            targetRoundsReached();
+        }
+
+
 
         p2Played = true;
     }
@@ -210,7 +244,7 @@ p2Paper.addEventListener("click", function() {
 // P2 SCISSORS
 p2Scissors.addEventListener("click", function() {
     
-    if (!p2Played) {
+    if (!p2Played && targetRoundsInt > 0 && !isGameOver) {
         p2Choices.classList.add("scissors"); 
         p2Choices.classList.remove("rock", "paper");
         
@@ -222,19 +256,21 @@ p2Scissors.addEventListener("click", function() {
         if (p1Choices.classList.contains("rock")) {
             p1Score += 1;
             p1Span.innerText = p1Score;
-            
             result.innerText = "PLAYER 1 WINS - ROCK SMASHES SCISSORS.";
         }
             
         if (p1Choices.classList.contains("paper")) {
             p2Score += 1;
             p2Span.innerText = p2Score;
-            
             result.innerText = "PLAYER 2 WINS - SCISSORS CUTS PAPER";
         }
         
         if (p1Choices.classList.contains("scissors")) {
             result.innerText = "TIE"
+        }
+
+        if ( (p1Score == targetRoundsInt) || (p2Score == targetRoundsInt) ){
+            targetRoundsReached();
         }
 
         p2Played = true;
@@ -243,7 +279,11 @@ p2Scissors.addEventListener("click", function() {
 
 
 // Next Round Setup
-nextRoundButton.addEventListener("click", resetSelections);
+nextRoundButton.addEventListener("click", function() {
+    if (!isGameOver) {
+        resetSelections();
+    }
+});
 
 // New Game
 resetGameButton.addEventListener("click", resetGame);
@@ -283,6 +323,17 @@ function resetGame() {
     p2Score = 0;
     p1Span.innerText = 0;
     p2Span.innerText = 0;
+    winnerDisplay.innerText = "";
+    isGameOver = false;
 }
 
-
+/*
+    Target Rounds Reached
+        - function ran when number of rounds needed to win is reached by either player
+        - displays winnner
+*/
+function targetRoundsReached() {
+        isGameOver = true;
+        winnerText = (p1Score == targetRoundsInt) ? "Player 1 wins" : "Player 2 Wins";
+        winnerDisplay.innerText = winnerText;
+}
