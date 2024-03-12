@@ -9,6 +9,7 @@ Styling 2
     - round loser = red
 - added function to update both player's title color for a tie -- yellow
 - removed round result text - using color to show round winner
+- added margin on buttons and select elements
 
 
 ==================================
