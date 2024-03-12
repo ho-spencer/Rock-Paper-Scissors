@@ -1,5 +1,20 @@
 ==================================
 3/11/24
+Refactor
+==================================
+- remove lines to remove "selected" class name from each add event Listener
+    - not needed anymore since a player can only make 1 selection per round
+    - this functionality is now used int resetSelections() and is only needed when starting a new round or game
+- remove lines to remove "rock", "paper", or "scissors" class name p1Choices/p2Choices in each add event Listener
+    - not needed anymore since a player can only make 1 selection per round
+    - this functionality is now used int resetSelections() and is only needed when starting a new round or game
+- create functions to update p1 and p2 score
+    - use functions to update score in each add event listener
+- move all functions to a separate "functions.js" file
+
+
+==================================
+3/11/24
 Add Best of # of Rounds Option
 ==================================
 - add select element to choose a "best of # of rounds" option
