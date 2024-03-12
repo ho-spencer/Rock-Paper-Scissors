@@ -18,8 +18,8 @@ function resetSelections() {
     p1Scissors.classList.remove("selected");
     p2Scissors.classList.remove("selected");
 
-    player1Title.classList.remove("green", "red");
-    player2Title.classList.remove("green", "red");
+    player1Title.classList.remove("green", "red", "yellow");
+    player2Title.classList.remove("green", "red", "yellow");
 
 }
 
