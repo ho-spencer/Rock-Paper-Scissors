@@ -1,11 +1,18 @@
-img {
-    width: 10%;
-    margin: 10px;
+.title, .container {
+    text-align: center;
 }
-
 .game {
     display: flex;
     border: 1px solid black;
+}
+
+.round-select{
+    width: 20%;
+}
+
+img {
+    width: 10%;
+    margin: 10px;
 }
 
 .p1choices {

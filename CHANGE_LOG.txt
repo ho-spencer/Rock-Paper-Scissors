@@ -1,5 +1,21 @@
 ==================================
 3/11/24
+Styling 1
+==================================
+- move images to the center of their respective div
+- center on page
+    - title
+    - scoreboard
+    - "best of # of rounds" select
+    - round result message
+    - next round and next game buttons
+- updated buttons to use bootstrap
+- updated select and label to use bootstrap
+
+
+
+==================================
+3/11/24
 Refactor
 ==================================
 - remove lines to remove "selected" class name from each add event Listener
