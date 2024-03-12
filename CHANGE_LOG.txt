@@ -1,4 +1,17 @@
 ==================================
+3/12/24
+Styling 2
+==================================
+- used bootstrap to resize game play area and center int
+- added label to show what side is for which player
+- added function to update player title color
+    - round winner = green
+    - round loser = red
+- added function to update both player's title color for a tie -- yellow
+- removed round result text - using color to show round winner
+
+
+==================================
 3/11/24
 Styling 1
 ==================================

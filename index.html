@@ -15,9 +15,8 @@
         <div class="scoreboard">
             <h2><span id="p1Score">0</span>-<span id="p2Score">0</span></h2>
             <h2 id="winnerDisplay"></h2>
-            <h3 class="result" id="result"></h3>
             
-            <div class="round-select form-floating">
+            <div class="round-select form-floating offset-3">
                 <select class="form-select" name="playTo" id="playTo">
                     <option value="default">Choose Number of Rounds</option>
                     <option value="2">3</option>
@@ -26,40 +25,42 @@
                 </select>
                 <label for="playTo">Best of:</label>
             </div>
-    </div>
-    
-        
-        <div class="game">
+        </div>
+
+        <div class="game col-md-6 offset-md-3 justify-content-evenly">
             <!-- Player 1 Choices -->
-            <div class="p1choices" id="p1">
+            <div class="p1choices col-md-3" id="p1">
+                <h3 id="player1Title">Player 1</h3>
                 <div class="choice" id="p1rock">
                     <img src="/images/rock.png" alt="rock">
                 </div>
-        
+            
                 <div class="choice" id="p1paper">
                     <img src="/images/paper.png" alt="paper">
                 </div>
-        
+            
                 <div class="choice" id="p1scissors">
                     <img src="/images/scissors.png" alt="scissors">
                 </div>
             </div>
-        
+            
             <!-- Player 2 Choices -->
-            <div class="p2choices" id="p2">
+            <div class="p2choices col-md-3" id="p2">
+                <h3 id="player2Title">Player 2</h3>
                 <div class="choice" id="p2rock">
                     <img src="/images/rock.png" alt="rock">
                 </div>
-        
+            
                 <div class="choice" id="p2paper">
                     <img src="/images/paper.png" alt="paper">
                 </div>
-        
+            
                 <div class="choice" id="p2scissors">
                     <img src="/images/scissors.png" alt="scissors">
                 </div>
             </div>
         </div>
+        
 
         <button class="btn btn-outline-success" id="nextRound">Next Round</button>
         <button class="btn btn-outline-secondary" id="resetGame">New Game</button>

@@ -1,15 +1,12 @@
 /*
     Reset Selections
         - set player selection boolean to false (p1Played / p2Played)
-        - reset round result text
         - remove player choice from class list
         - remove selected class (remove highlighted selection)
 */
 function resetSelections() {
     p1Played = false;
     p2Played = false;
-    
-    result.innerText = "";
     
     p1Choices.classList.remove("rock", "paper", "scissors");
     p2Choices.classList.remove("rock", "paper", "scissors");
@@ -20,6 +17,10 @@ function resetSelections() {
     p2Paper.classList.remove("selected");
     p1Scissors.classList.remove("selected");
     p2Scissors.classList.remove("selected");
+
+    player1Title.classList.remove("green", "red");
+    player2Title.classList.remove("green", "red");
+
 }
 
 /*
@@ -54,9 +55,29 @@ function targetRoundsReached() {
 function updateP1Score() {
     p1Score += 1;
     p1Span.innerText = p1Score;
+    player1WinsColor()
 }
 
 function updateP2Score() {
     p2Score += 1;
     p2Span.innerText = p2Score;
+    player2WinsColor();
+}
+
+/*
+    Update player title color based on round winner
+*/
+function player1WinsColor() {
+    player1Title.classList.add("green");
+    player2Title.classList.add("red");
+}
+
+function player2WinsColor() {
+    player1Title.classList.add("red");
+    player2Title.classList.add("green");
+}
+
+function tieColor() {
+    player1Title.classList.add("yellow");
+    player2Title.classList.add("yellow");
 }

@@ -11,7 +11,7 @@
 }
 
 img {
-    width: 10%;
+    width: 50%;
     margin: 10px;
 }
 
@@ -25,4 +25,16 @@ img {
 
 .selected {
     background-color: lightblue;
+}
+
+.green {
+    color: #00CC00;
+}
+
+.red {
+    color: red;
+}
+
+.yellow {
+    color: #FFC000;
 }
